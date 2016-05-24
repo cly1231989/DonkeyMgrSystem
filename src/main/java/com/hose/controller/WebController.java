@@ -53,6 +53,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hose.model.Donkey;
 import com.hose.model.DonkeyPageInfo;
 import com.hose.model.DonkeyVersion;
+import com.hose.model.Filters;
 import com.hose.model.ImageUploadResult;
 import com.hose.model.ImageUrl;
 import com.hose.model.ImagesInfo;
@@ -62,6 +63,7 @@ import com.hose.service.DonkeyRepository;
 import com.hose.service.DonkeyService;
 import com.hose.service.UserService;
 import com.hose.util.FilePathUtil;
+import com.hose.util.ImageUtil;
 
 
 @Controller
@@ -326,8 +328,8 @@ public class WebController {
 		String sidx = request.getParameter("sidx");
 		String sord = request.getParameter("sord");	
 		String search = request.getParameter("_search");
-		String searchField = request.getParameter("searchField");
-		String searchString = request.getParameter("searchString");
+//		String searchField = request.getParameter("searchField");
+//		String searchString = request.getParameter("searchString");
 		
 		long totalCount = donkeyService.getTotalCount();
 		long tatalPage = totalCount/rows;
@@ -340,7 +342,16 @@ public class WebController {
 
 		Page<Donkey> donkeys;
 		if(search.equalsIgnoreCase("true")){
-			donkeys = donkeyService.getOneGroupDonkeysByCondition(searchField, searchString, rows*(pageth-1), rows, sidx, sord);
+			Filters filters = null;
+			try {
+				String searchField = request.getParameter("filters");
+				filters = new ObjectMapper().readValue(searchField, Filters.class);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			donkeys = donkeyService.getOneGroupDonkeysByCondition(filters, rows*(pageth-1), rows, sidx, sord);
 		}else{
 			donkeys = donkeyService.getOneGroupDonkeys(rows*(pageth-1), rows, sidx, sord);
 		}
@@ -412,8 +423,8 @@ public class WebController {
 		String qualitystatus = request.getParameter("qualitystatus");
 		String freshkeepmethod = request.getParameter("freshkeepmethod");
 		String freshkeeptime = request.getParameter("freshkeeptime");
-		String QC = request.getParameter("QC");
-		String QA = request.getParameter("QA");
+		String QC = request.getParameter("qc");
+		String QA = request.getParameter("qa");
 		String furquality = request.getParameter("furquality");
 		//String factorytime = request.getParameter("factorytime");
 		
@@ -516,7 +527,6 @@ public class WebController {
 	@RequestMapping(method = RequestMethod.POST, value = "/donkey/images/upload")
 	public String imageUpload(MultipartHttpServletRequest request, Map<String, Object> model) {
 	
-		long beginTime = System.currentTimeMillis();
 		Long userId= (Long) model.get("userid");
 		if(userId == null){
 			return needLoginString;
@@ -540,54 +550,17 @@ public class WebController {
 		
 		thumbName += "\\thumb-" + df.format(new Date()) + ".jpg";
 		imageName += "\\image-" + df.format(new Date()) + ".jpg";
-		System.out.println(imageName);
-		   
-		try {
-			BufferedImage bufferedImage = ImageIO.read(image.getInputStream());
-			int height = bufferedImage.getHeight();
-			int width = bufferedImage.getWidth();
-			double ratio = 1.0;
-			int height1 = 0;
-			int width1 = 0;
-			if(height >= width){
-				height1 = 150;
-				ratio = height * 1.0 / 150;
-				width1 = (int) (width * 1.0 / ratio);
-			}else
-			{
-				width1 = 150;
-				ratio = width * 1.0 / 150;
-				height1 = (int) (height * 1.0 / ratio);
-			}
-		    BufferedImage bufferedImage1 = new BufferedImage(width1, height1, BufferedImage.TYPE_INT_BGR);		    		
-		    Image thumbImage = bufferedImage.getScaledInstance(width1, height1, BufferedImage.SCALE_DEFAULT);
-		    
-		    bufferedImage1.getGraphics().drawImage(thumbImage, 0, 0, null);
-		    File thumbImageFile = new File(fileName + thumbName);
-		    File imageFile = new File(fileName + imageName);
-		    FileImageOutputStream thumbImageOutputStream = new FileImageOutputStream(thumbImageFile);
-		    FileImageOutputStream imageOutputStream = new FileImageOutputStream(imageFile);
-		   
-		    ImageIO.write(bufferedImage1, "jpg", thumbImageOutputStream);
-		    thumbImageOutputStream.close();
-		   
-		    ImageIO.write(bufferedImage, "jpg", imageOutputStream);
-		    imageOutputStream.close();
-		} catch (IOException e) {
-			return failedString;
-		}		
 		
-		System.out.println("----------------------------------total time: " + Long.toString(System.currentTimeMillis()-beginTime));
+		if( !ImageUtil.makeThumbImgage(image, fileName + imageName, fileName + thumbName) )
+			return failedString;
+		
 		ImageUploadResult imageUploadResult = new ImageUploadResult("success", thumbName);
 		try {
 			return mapper.writeValueAsString(imageUploadResult);
 		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return failedString;
-		}
-			   
-		//return "{\"result\":\"success\", \"url\":\"" + thumbName + "\"}";
+		}			 
 	}
 	
 	@ResponseBody
@@ -616,9 +589,10 @@ public class WebController {
 		return donkeyService.getDonkey(id);
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, value = "/donkey/web/{sn}")
+	@RequestMapping("/{sn}")
 	public String getDonkeyForWeb(@PathVariable Integer sn, Map<String, Object> model) {
 		Donkey donkey = donkeyService.getDonkeyBySn(sn);
+		model.put("donkey", donkey);
 		return "showdonkey";
 	}
 	

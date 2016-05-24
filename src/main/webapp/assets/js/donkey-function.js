@@ -121,17 +121,17 @@ jQuery(function($) {
 							}
 						},
 						{label:'序号', 		name:'id', 				index:'id', 			editable:false,		width:80, 		hidden:true,			search:false,		formatter:'integer', key:true},
-						{label:'编号', 		name:'sn', 				index:'sn', 			editable:true, 		width:80, 		sorttype:'int',			formatter:'integer',editrules:{required:true},		searchoptions:{sopt:['cn']}},
-						{label:'养殖户', 		name:'farmer', 			index:'farmer', 		editable:true, 		width:120, 		sortable:false,			search:false},
-						{label:'养殖地址', 	name:'breedaddress', 	index:'breedaddress', 	editable:true, 		width:150, 		sortable:false, 		edittype:'textarea',		editoptions:{rows:"1",cols:"50"}, searchoptions:{sopt:['cn']}},
-						{label:'供应商', 		name:'supplier', 		index:'supplier', 		editable:true, 		width:120, 		sortable:false,			search:false},
-						{label:'供应地址', 	name:'supplyaddress', 	index:'supplyaddress', 	editable:true, 		width:150, 		sortable:false, 		edittype:'textarea',		editoptions:{rows:"1",cols:"50"}, searchoptions:{sopt:['cn']}},
+						{label:'编号', 		name:'sn', 				index:'sn', 			editable:true, 		width:80, 		sorttype:'int',			formatter:'integer',editrules:{required:true},		searchoptions:{sopt:['cn', 'eq']}},
+						{label:'养殖户', 	name:'farmer', 			index:'farmer', 		editable:true, 		width:120, 		sortable:false,			searchoptions:{sopt:['cn', 'eq']}},
+						{label:'养殖地址', 	name:'breedaddress', 	index:'breedaddress', 	editable:true, 		width:150, 		sortable:false, 		edittype:'textarea',		editoptions:{rows:"1",cols:"50"}, searchoptions:{sopt:['cn', 'eq']}},
+						{label:'供应商', 	name:'supplier', 		index:'supplier', 		editable:true, 		width:120, 		sortable:false,			searchoptions:{sopt:['cn', 'eq']}},
+						{label:'供应地址', 	name:'supplyaddress', 	index:'supplyaddress', 	editable:true, 		width:150, 		sortable:false, 		edittype:'textarea',		editoptions:{rows:"1",cols:"50"}, searchoptions:{sopt:['cn', 'eq']}},
 						{label:'订单时间', 	name:'dealtime', 		index:'dealtime', 		editable:true,		width:120, 		sortable:false,			search:false,		unformat: pickDate},
 						{label:'供应时间', 	name:'supplytime', 		index:'supplytime', 	editable:true,		width:120, 		sortable:false,			search:false,		unformat: pickDate},
-						{label:'品种', 		name:'breed',		 	index:'breed', 			editable:true, 		width:120, 		sortable:false,			search:false,		edittype:"select",			editoptions:{value:'关中驴:关中驴;德州驴:德州驴;华北驴:华北驴;其他:其他'}},
-						{label:'性别', 		name:'sex', 			index:'sex', 			editable:true, 		width:120, 		sortable:false,			search:false,		edittype:"select",			editoptions:{value:'雄性:雄性;雌性:雌性;阉割:阉割'}}, 
+						{label:'品种', 		name:'breed',		 	index:'breed', 			editable:true, 		width:120, 		sortable:false,			searchoptions:{sopt:['eq']},		edittype:"select",			editoptions:{value:'关中驴:关中驴;德州驴:德州驴;华北驴:华北驴;其他:其他'}},
+						{label:'性别', 		name:'sex', 			index:'sex', 			editable:true, 		width:120, 		sortable:false,			searchoptions:{sopt:['eq']},		edittype:"select",			editoptions:{value:'雄性:雄性;雌性:雌性;阉割:阉割'}}, 
 						//{label:'订单时年龄',	name:'agewhendeal', 	index:'agewhendeal', 	editable:true, 		width:120, 		sortable:false,			search:false},
-						{label:'屠宰年龄',	name:'agewhenkill', 	index:'agewhenkill', 	editable:true, 		width:120, 		sortable:false,			search:false},
+						{label:'屠宰年龄',	name:'agewhenkill', 	index:'agewhenkill', 	editable:true, 		width:120, 		sortable:false,			search:false,		edittype:"select",			editoptions:{value:'1岁:1岁;2岁:2岁;3岁:3岁;4岁:4岁;5岁:5岁;6岁:6岁;7岁:7岁;8岁:8岁;9岁:9岁;10岁:10岁'}},
 						//{label:'饲喂情况', 	name:'feedstatus', 		index:'feedstatus', 	editable:true, 		width:120, 		sortable:false,			search:false,		edittype:'textarea',		editoptions:{rows:"1",cols:"50"}},
 						{label:'饲养方式', 	name:'feedpattern', 	index:'feedpattern', 	editable:true, 		width:120, 		sortable:false,			search:false,		edittype:'select', 		editoptions:{value:'圈养:圈养;放养:放养'}},
 						{label:'饲草', 		name:'forage', 			index:'forage', 		editable:true, 		width:120, 		sortable:false,			search:false,		edittype:'textarea',		editoptions:{rows:"1",cols:"50"}},
@@ -145,8 +145,8 @@ jQuery(function($) {
 						{label:'保鲜方式', 	name:'freshkeepmethod', index:'freshkeepmethod',editable:true, 		width:120, 		sortable:false,			search:false,		edittype:'select', 		editoptions:{value:'鲜肉:鲜肉;冻肉:冻肉'}},
 						{label:'保质期', 		name:'freshkeeptime', 	index:'freshkeeptime', 	editable:true, 		width:120, 		sortable:false,			search:false},
 						{label:'质检情况', 	name:'qualitystatus', 	index:'qualitystatus', editable:true, 		width:120, 		sortable:false,			search:false,		edittype:"select",			editoptions:{value:'合格:合格;不合格:不合格'}},
-						{label:'QC编号', 		name:'QC', 				index:'QC', 			editable:true, 		width:120, 		sortable:false,			search:false},
-						{label:'QA编号', 		name:'QA', 				index:'QA', 			editable:true, 		width:120, 		sortable:false,			search:false},
+						{label:'QC编号', 		name:'qc', 				index:'qc', 			editable:true, 		width:120, 		sortable:false,			search:false},
+						{label:'QA编号', 		name:'qa', 				index:'qa', 			editable:true, 		width:120, 		sortable:false,			search:false},
 						{label:'驴皮质量', 	name:'furquality', 		index:'furquality', 	editable:true, 		width:120, 		sortable:false,			search:false},
 						//{label:'质检情况', 	name:'qualitystatyus', 	index:'qualitystatyus', editable:true, 		width:150, 		sortable:false,			search:false},
 						//{label:'出厂时间', 	name:'factorytime', 	index:'factorytime', 	editable:true, 		width:150, 		sortable:false,			search:false,		unformat: pickDate},
@@ -187,10 +187,24 @@ jQuery(function($) {
 					      id: "0"
 					},
 					onSelectRow: function(id){  
-					      if(id){  					     
-					         selectID=id;  
-					      }    
-					   }
+  				       if(id){  					     
+				          selectID=id;  
+				       }    
+					},
+					
+//					grouping : true , // 是否分组,默认为false
+//					groupingView : {
+//					groupField : [ 'breedaddress'], // 按照哪一列进行分组
+//					groupColumnShow : [ true ], // 是否显示分组列
+//					groupText : [ '<b>{0} - {1} 条记录</b>' ], // 表头显示的数据以及相应的数据量
+//					groupCollapse : false , // 加载数据时是否只显示分组的组信息
+//					groupDataSorted : true , // 分组中的数据是否排序
+//					groupOrder : [ 'asc' ], // 分组后的排序
+//					groupSummary : [ true ], // 是否显示汇总.如果为true需要在colModel中进行配置
+//					summaryType : 'max' , // 运算类型，可以为max,sum,avg</div>
+//					summaryTpl : '<b>Max: {0}</b>' ,
+//					showSummaryOnHide : true //是否在分组底部显示汇总信息并且当收起表格时是否隐藏下面的分组
+//					},
 				});
 			
 				//enable search/filter toolbar
@@ -299,7 +313,7 @@ jQuery(function($) {
 							style_search_filters($(this));
 						}
 						,
-						multipleSearch: false,
+						multipleSearch: true,
 						/**
 						multipleGroup:true,
 						showQuery: true

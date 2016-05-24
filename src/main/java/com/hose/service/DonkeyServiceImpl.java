@@ -1,5 +1,8 @@
 package com.hose.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -13,6 +16,8 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.hose.model.Donkey;
+import com.hose.model.FilterItem;
+import com.hose.model.Filters;
 import com.hose.model.User;
 
 @Service
@@ -50,13 +55,22 @@ public class DonkeyServiceImpl implements DonkeyService {
 	}
 
 	@Override
-	public Page<Donkey> getOneGroupDonkeysByCondition(String condition, String value, int fisrtIndex, int Count,
+	public Page<Donkey> getOneGroupDonkeysByCondition(Filters filters, int fisrtIndex, int Count,
 			String sidx, String sord) {
 		Direction directione = getDirection(sord);
 		Specification<Donkey> spec = new Specification<Donkey>() {  
 			@Override
 			public Predicate toPredicate(Root<Donkey> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
-				return cb.like(root.get(condition).as(String.class), "%" + value + "%");
+				List<Predicate> list = new ArrayList<Predicate>();  
+				for(FilterItem item:filters.getRules()){
+					if( item.getOp().equalsIgnoreCase("cn") )
+						list.add(cb.like(root.get(item.getField()).as(String.class), "%"+item.getData()+"%"));
+					else if( item.getOp().equalsIgnoreCase("eq") )
+						list.add(cb.equal(root.get(item.getField()).as(String.class), item.getData()));
+				}
+
+				Predicate[] p = new Predicate[list.size()];  
+			    return cb.and(list.toArray(p));  
 			}  
         };
         
