@@ -33,7 +33,7 @@
 					<a href="#" class="navbar-brand">
 						<small>
 							<i class="icon-leaf"></i>
-							内蒙古阿鲁科尔沁旗太极天驴有限公司毛驴信息管理系统
+							太极天驴公司毛驴信息档案管理系统
 						</small>
 					</a><!-- /.brand -->
 				</div><!-- /.navbar-header -->

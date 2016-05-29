@@ -426,6 +426,7 @@ public class WebController {
 		String QC = request.getParameter("qc");
 		String QA = request.getParameter("qa");
 		String furquality = request.getParameter("furquality");
+		String reserved = request.getParameter("reserved");
 		//String factorytime = request.getParameter("factorytime");
 		
 		Donkey donkey = null;
@@ -433,7 +434,7 @@ public class WebController {
 		if(id == 0){
 			String imagedir = FilePathUtil.getImgPathWriteToDB(sn);
 			donkey = new Donkey(sn,  farmer,  breedaddress, supplier, supplyaddress, dealtime, supplytime, breed, sex, "", agewhenkill, feedpattern, forage, "",  healthstatus,
-					 breedstatus, killdepartment, "", killtime, freshkeepmethod, freshkeeptime, "",  "", qualitystatus, QC, QA, furquality, "", "", imagedir, version, false);
+					 breedstatus, killdepartment, "", killtime, freshkeepmethod, freshkeeptime, "",  "", qualitystatus, QC, QA, furquality, reserved, "", imagedir, version, false);
 		}else{
 			donkey = donkeyService.getDonkey(id);		
 			donkey.setSn(sn);
@@ -464,6 +465,7 @@ public class WebController {
 			donkey.setQc(QC);
 			donkey.setQa(QA);
 			donkey.setFurquality(furquality);
+			donkey.setReserved(reserved);
 			//donkey.setFactorytime(factorytime);
 		}
 		
@@ -593,6 +595,23 @@ public class WebController {
 	public String getDonkeyForWeb(@PathVariable Integer sn, Map<String, Object> model) {
 		Donkey donkey = donkeyService.getDonkeyBySn(sn);
 		model.put("donkey", donkey);
+		
+		List<String> imageUrls = new ArrayList();
+		String imageDir = donkey.getImagedir();
+		String webRootPath = FilePathUtil.getWebRootPath();
+		File fileMgr = new File(webRootPath + imageDir);
+		File[] files = fileMgr.listFiles();
+		if(files != null && files.length != 0){
+			for(File file:files){
+				if(file.getName().contains("thumb"))
+					continue;
+				
+				String imageUrl = imageDir + "\\" + file.getName();
+				imageUrls.add(imageUrl);
+			}
+		}
+		
+		model.put("imageurls", imageUrls);
 		return "showdonkey";
 	}
 	

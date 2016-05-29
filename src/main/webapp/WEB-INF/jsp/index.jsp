@@ -3,7 +3,7 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
-		<title>毛驴信息管理系统</title>
+		<title>太极天驴公司毛驴信息档案管理系统</title>
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
@@ -33,7 +33,7 @@
 					<a href="#" class="navbar-brand">
 						<small>
 							<i class="icon-leaf"></i>
-							内蒙古阿鲁科尔沁旗太极天驴有限公司毛驴信息管理系统
+							太极天驴公司毛驴信息档案管理系统
 						</small>
 					</a><!-- /.brand -->
 				</div><!-- /.navbar-header -->

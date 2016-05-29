@@ -131,7 +131,7 @@ jQuery(function($) {
 						{label:'品种', 		name:'breed',		 	index:'breed', 			editable:true, 		width:120, 		sortable:false,			searchoptions:{sopt:['eq']},		edittype:"select",			editoptions:{value:'关中驴:关中驴;德州驴:德州驴;华北驴:华北驴;其他:其他'}},
 						{label:'性别', 		name:'sex', 			index:'sex', 			editable:true, 		width:120, 		sortable:false,			searchoptions:{sopt:['eq']},		edittype:"select",			editoptions:{value:'雄性:雄性;雌性:雌性;阉割:阉割'}}, 
 						//{label:'订单时年龄',	name:'agewhendeal', 	index:'agewhendeal', 	editable:true, 		width:120, 		sortable:false,			search:false},
-						{label:'屠宰年龄',	name:'agewhenkill', 	index:'agewhenkill', 	editable:true, 		width:120, 		sortable:false,			search:false,		edittype:"select",			editoptions:{value:'1岁:1岁;2岁:2岁;3岁:3岁;4岁:4岁;5岁:5岁;6岁:6岁;7岁:7岁;8岁:8岁;9岁:9岁;10岁:10岁'}},
+						{label:'屠宰年龄',	name:'agewhenkill', 	index:'agewhenkill', 	editable:true, 		width:120, 		sortable:false,			search:false},
 						//{label:'饲喂情况', 	name:'feedstatus', 		index:'feedstatus', 	editable:true, 		width:120, 		sortable:false,			search:false,		edittype:'textarea',		editoptions:{rows:"1",cols:"50"}},
 						{label:'饲养方式', 	name:'feedpattern', 	index:'feedpattern', 	editable:true, 		width:120, 		sortable:false,			search:false,		edittype:'select', 		editoptions:{value:'圈养:圈养;放养:放养'}},
 						{label:'饲草', 		name:'forage', 			index:'forage', 		editable:true, 		width:120, 		sortable:false,			search:false,		edittype:'textarea',		editoptions:{rows:"1",cols:"50"}},
@@ -148,6 +148,7 @@ jQuery(function($) {
 						{label:'QC编号', 		name:'qc', 				index:'qc', 			editable:true, 		width:120, 		sortable:false,			search:false},
 						{label:'QA编号', 		name:'qa', 				index:'qa', 			editable:true, 		width:120, 		sortable:false,			search:false},
 						{label:'驴皮质量', 	name:'furquality', 		index:'furquality', 	editable:true, 		width:120, 		sortable:false,			search:false},
+						{label:'其他', 		name:'reserved', 		index:'reserved', 		editable:true, 		width:120, 		sortable:false,			search:false},						
 						//{label:'质检情况', 	name:'qualitystatyus', 	index:'qualitystatyus', editable:true, 		width:150, 		sortable:false,			search:false},
 						//{label:'出厂时间', 	name:'factorytime', 	index:'factorytime', 	editable:true, 		width:150, 		sortable:false,			search:false,		unformat: pickDate},
 						{label:'版本号', 		name:'version', 		index:'version', 		editable:true, 		width:150, 		sortable:false,			search:false,		hidden:true},
@@ -255,7 +256,6 @@ jQuery(function($) {
 							$('#tr_images', e).show();
 							form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
 							style_edit_form(form);
-							console.log('hahaah');
 						}
 					},
 					{
