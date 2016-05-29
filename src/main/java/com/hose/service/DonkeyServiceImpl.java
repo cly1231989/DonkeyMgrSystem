@@ -110,7 +110,7 @@ public class DonkeyServiceImpl implements DonkeyService {
 		if(id== 0)
 			return true;
 		
-		return (donkey.getId() != id);
+		return !id.equals( donkey.getId() );
 	}
 
 	@Override
