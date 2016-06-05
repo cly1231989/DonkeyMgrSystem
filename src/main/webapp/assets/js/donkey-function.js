@@ -1,4 +1,4 @@
-jQuery(function($) {
+﻿jQuery(function($) {
 				var selectID;
 				var grid_selector = "#grid-table";
 				var pager_selector = "#grid-pager";
@@ -8,8 +8,9 @@ jQuery(function($) {
 					var myDropzone = $(".dropzone").dropzone({
 						//url: "/donkey/images/upload/"+selectID,
 					    paramName: "image", // The name that will be used to transfer the file
-					    maxFilesize: 5.5, // MB
+					    maxFilesize: 15.5, // MB
 					    maxFiles: 10,
+					    dictFileTooBig: '图片大小不能超过15Mb',
 					    acceptedFiles: ".jpg,.png,.bmp",
 						addRemoveLinks: false,
 						dictDefaultMessage :
@@ -109,6 +110,7 @@ jQuery(function($) {
 					datatype: "json",
 			        mtype: "POST",
 					height: 550,
+					rownumbers:true,
 					//colNames:[' ', 'ID','Last Sales','Name', 'Stock', 'Ship via','Notes'],
 					colModel:[
 						{name:'编辑',index:'', width:80, fixed:true, sortable:false, resize:false,
@@ -128,8 +130,8 @@ jQuery(function($) {
 						{label:'供应地址', 	name:'supplyaddress', 	index:'supplyaddress', 	editable:true, 		width:150, 		sortable:false, 		edittype:'textarea',		editoptions:{rows:"1",cols:"50"}, searchoptions:{sopt:['cn', 'eq']}},
 						{label:'订单时间', 	name:'dealtime', 		index:'dealtime', 		editable:true,		width:120, 		sortable:false,			search:false,		unformat: pickDate},
 						{label:'供应时间', 	name:'supplytime', 		index:'supplytime', 	editable:true,		width:120, 		sortable:false,			search:false,		unformat: pickDate},
-						{label:'品种', 		name:'breed',		 	index:'breed', 			editable:true, 		width:120, 		sortable:false,			searchoptions:{sopt:['eq']},		edittype:"select",			editoptions:{value:'关中驴:关中驴;德州驴:德州驴;华北驴:华北驴;其他:其他'}},
-						{label:'性别', 		name:'sex', 			index:'sex', 			editable:true, 		width:120, 		sortable:false,			searchoptions:{sopt:['eq']},		edittype:"select",			editoptions:{value:'雄性:雄性;雌性:雌性;阉割:阉割'}}, 
+						{label:'品种', 		name:'breed',		 	index:'breed', 			editable:true, 		width:120, 		sortable:false,			stype: 'select', searchoptions:{sopt:['eq'], value: ":所有;1:关中驴;2:德州驴;3:华北驴;4:其他"},		edittype:"select",			editoptions:{value:'1:关中驴;2:德州驴;3:华北驴;4:其他'}, formatter:function(cellvalue, options, rowObject){if(cellvalue==1){return "关中驴";}else if(cellvalue==2){return "德州驴";}else if(cellvalue==3){return "华北驴";}else if(cellvalue==4){return "其他";}}},
+						{label:'性别', 		name:'sex', 			index:'sex', 			editable:true, 		width:120, 		sortable:false,			stype: 'select', searchoptions:{sopt:['eq'], value: ":所有;1:雄性;2:雌性;3:阉割"},		edittype:"select",			editoptions:{value:'1:雄性;2:雌性;3:阉割'}, formatter:function(cellvalue, options, rowObject){if(cellvalue==1){return "雄性";}else if(cellvalue==2){return "雌性";}else if(cellvalue==3){return "阉割";}}}, 
 						//{label:'订单时年龄',	name:'agewhendeal', 	index:'agewhendeal', 	editable:true, 		width:120, 		sortable:false,			search:false},
 						{label:'屠宰年龄',	name:'agewhenkill', 	index:'agewhenkill', 	editable:true, 		width:120, 		sortable:false,			search:false},
 						//{label:'饲喂情况', 	name:'feedstatus', 		index:'feedstatus', 	editable:true, 		width:120, 		sortable:false,			search:false,		edittype:'textarea',		editoptions:{rows:"1",cols:"50"}},
@@ -148,6 +150,7 @@ jQuery(function($) {
 						{label:'QC编号', 		name:'qc', 				index:'qc', 			editable:true, 		width:120, 		sortable:false,			search:false},
 						{label:'QA编号', 		name:'qa', 				index:'qa', 			editable:true, 		width:120, 		sortable:false,			search:false},
 						{label:'驴皮质量', 	name:'furquality', 		index:'furquality', 	editable:true, 		width:120, 		sortable:false,			search:false},
+						//{label:'库存状态', 	name:'stockstatus', 	index:'stockstatus', 	editable:true, 		width:120, 		sortable:false,			searchoptions:{sopt:['eq']},		edittype:"select",			editoptions:{value:'0:无;1:入库;2:在库;3:出库'}, formatter:function(cellvalue, options, rowObject){if(cellvalue==0){return "无";}else if(cellvalue==1){return "入库";}else if(cellvalue==2){return "在库";}else if(cellvalue==3){return "出库";}}},
 						{label:'其他', 		name:'reserved', 		index:'reserved', 		editable:true, 		width:120, 		sortable:false,			search:false},						
 						//{label:'质检情况', 	name:'qualitystatyus', 	index:'qualitystatyus', editable:true, 		width:150, 		sortable:false,			search:false},
 						//{label:'出厂时间', 	name:'factorytime', 	index:'factorytime', 	editable:true, 		width:150, 		sortable:false,			search:false,		unformat: pickDate},

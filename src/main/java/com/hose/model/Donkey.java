@@ -26,8 +26,8 @@ public class Donkey implements java.io.Serializable {
 	private String supplyaddress;
 	private String dealtime;
 	private String supplytime;
-	private String breed;
-	private String sex;
+	private Integer breed;
+	private Integer sex;
 	private String agewhendeal;
 	private String agewhenkill;
 	private String feedpattern;
@@ -60,7 +60,7 @@ public class Donkey implements java.io.Serializable {
 	}
 
 	public Donkey(int sn, String farmer, String breedaddress, String supplier, String supplyaddress, String dealtime,
-			String supplytime, String breed, String sex, String agewhendeal, String agewhenkill, String feedpattern,
+			String supplytime, Integer breed, Integer sex, String agewhendeal, String agewhenkill, String feedpattern,
 			String forage, String feedstatus, String healthstatus, String breedstatus, String killdepartment,
 			String killplace, String killtime, String freshkeepmethod, String freshkeeptime, String splitstatus,
 			String processstatus, String qualitystatus, String qc, String qa, String furquality, String reserved,
@@ -185,20 +185,20 @@ public class Donkey implements java.io.Serializable {
 	}
 
 	@Column(name = "breed", length = 64)
-	public String getBreed() {
+	public Integer getBreed() {
 		return this.breed;
 	}
 
-	public void setBreed(String breed) {
+	public void setBreed(Integer breed) {
 		this.breed = breed;
 	}
 
 	@Column(name = "sex", length = 32)
-	public String getSex() {
+	public Integer getSex() {
 		return this.sex;
 	}
 
-	public void setSex(String sex) {
+	public void setSex(Integer sex) {
 		this.sex = sex;
 	}
 

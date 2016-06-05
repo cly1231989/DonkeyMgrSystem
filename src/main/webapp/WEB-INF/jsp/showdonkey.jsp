@@ -55,7 +55,7 @@
 			<div class="desc_item"><span class="w2 title">品种</span>:	
 							<span class="choice">
 								<c:choose>   
-							       <c:when test="${donkey.breed eq '关中驴'}">   
+							       <c:when test="${donkey.breed eq 1}">   
 							       		<img src="assets/avatars/check_32.png" />
 							       </c:when>   							    
 							       <c:otherwise>   
@@ -66,7 +66,7 @@
 		 					</span>      
 							<span class="choice">
 								<c:choose>   
-							       <c:when test="${donkey.breed eq '德州驴'}">   
+							       <c:when test="${donkey.breed eq 2}">   
 							       		<img src="assets/avatars/check_32.png" />
 							       </c:when>   							    
 							       <c:otherwise>   
@@ -77,7 +77,7 @@
 		 					</span>       
 							<span class="choice">
 								<c:choose>   
-							       <c:when test="${donkey.breed eq '华北驴'}">   
+							       <c:when test="${donkey.breed eq 3}">   
 							            <img src="assets/avatars/check_32.png" />
 							       </c:when>   							    
 							       <c:otherwise>   
@@ -88,7 +88,7 @@
 							</span>       
 							<span class="choice">
 								<c:choose>   
-							       <c:when test="${donkey.breed eq '其他'}">   
+							       <c:when test="${donkey.breed eq 4}">   
 							            <img src="assets/avatars/check_32.png" />
 							       </c:when>   							    
 							       <c:otherwise>   
@@ -101,7 +101,7 @@
 			<div class="desc_item"><span class="w2 title">性别</span>:	
 							<span class="choice">
 								<c:choose>   
-							       <c:when test="${donkey.sex eq '雄性'}">   
+							       <c:when test="${donkey.sex eq 1}">   
 							            <img src="assets/avatars/check_32.png" />
 							       </c:when>   							    
 							       <c:otherwise>   
@@ -112,7 +112,7 @@
 							</span>        
 							<span class="choice">
 								<c:choose>   
-							       <c:when test="${donkey.sex eq '雌性'}">   
+							       <c:when test="${donkey.sex eq 2}">   
 							            <img src="assets/avatars/check_32.png" />
 							       </c:when>   							    
 							       <c:otherwise>   
@@ -123,7 +123,7 @@
 							</span>        
 							<span class="choice">
 								<c:choose>   
-							       <c:when test="${donkey.sex eq '阉割'}">   
+							       <c:when test="${donkey.sex eq 3}">   
 							            <img src="assets/avatars/check_32.png" />
 							       </c:when>   							    
 							       <c:otherwise>   

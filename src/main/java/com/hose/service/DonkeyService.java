@@ -9,8 +9,8 @@ import com.hose.model.User;
 public interface DonkeyService {
 
 	public long getTotalCount();
-	public Page<Donkey> getOneGroupDonkeys(int fisrtIndex, int Count, String sidx, String sord);
-	public Page<Donkey> getOneGroupDonkeysByCondition(Filters filters, int fisrtIndex, int Count, String sidx, String sord);
+	public Page<Donkey> getOneGroupDonkeys(int pageth, int Count, String sidx, String sord);
+	public Page<Donkey> getOneGroupDonkeysByCondition(Filters filters, int pageth, int Count, String sidx, String sord);
 	public void delDonkey(Integer id);
 	public Donkey getDonkey(Integer id);
 	public Donkey saveDonkey(Donkey donkey);

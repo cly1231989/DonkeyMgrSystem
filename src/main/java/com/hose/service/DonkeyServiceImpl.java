@@ -44,9 +44,9 @@ public class DonkeyServiceImpl implements DonkeyService {
 	}
 
 	@Override
-	public Page<Donkey> getOneGroupDonkeys(int fisrtIndex, int Count, String sidx, String sord) {
+	public Page<Donkey> getOneGroupDonkeys(int pageth, int Count, String sidx, String sord) {
 		Direction directione = getDirection(sord);
-		return donkeyRepository.findAll( new PageRequest(fisrtIndex, Count, directione, sidx) );
+		return donkeyRepository.findAll( new PageRequest(pageth, Count, directione, sidx) );
 	}
 
 	@Override
@@ -55,7 +55,7 @@ public class DonkeyServiceImpl implements DonkeyService {
 	}
 
 	@Override
-	public Page<Donkey> getOneGroupDonkeysByCondition(Filters filters, int fisrtIndex, int Count,
+	public Page<Donkey> getOneGroupDonkeysByCondition(Filters filters, int pageth, int Count,
 			String sidx, String sord) {
 		Direction directione = getDirection(sord);
 		Specification<Donkey> spec = new Specification<Donkey>() {  
@@ -74,7 +74,7 @@ public class DonkeyServiceImpl implements DonkeyService {
 			}  
         };
         
-        return donkeyRepository.findAll(spec, new PageRequest(fisrtIndex, Count, directione, sidx));//.findByUsernameLike(userName, new PageRequest(fisrtIndex, Count, Direction.ASC, sidx) );
+        return donkeyRepository.findAll(spec, new PageRequest(pageth, Count, directione, sidx));//.findByUsernameLike(userName, new PageRequest(fisrtIndex, Count, Direction.ASC, sidx) );
 	}
 	
 	private Direction getDirection(String sord){

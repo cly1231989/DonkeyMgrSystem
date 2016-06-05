@@ -351,9 +351,9 @@ public class WebController {
 				e.printStackTrace();
 			}
 			
-			donkeys = donkeyService.getOneGroupDonkeysByCondition(filters, rows*(pageth-1), rows, sidx, sord);
+			donkeys = donkeyService.getOneGroupDonkeysByCondition(filters, pageth-1, rows, sidx, sord);
 		}else{
-			donkeys = donkeyService.getOneGroupDonkeys(rows*(pageth-1), rows, sidx, sord);
+			donkeys = donkeyService.getOneGroupDonkeys(pageth-1, rows, sidx, sord);
 		}
 				
 		DonkeyPageInfo donkeysInfo = new DonkeyPageInfo(tatalPage, pageth, totalCount, 0, donkeys.getContent());
@@ -406,8 +406,8 @@ public class WebController {
 		String supplyaddress = request.getParameter("supplyaddress");
 		String dealtime = request.getParameter("dealtime");
 		String supplytime = request.getParameter("supplytime");
-		String breed = request.getParameter("breed");
-		String sex = request.getParameter("sex");
+		Integer breed = Integer.parseInt( request.getParameter("breed") );
+		Integer sex = Integer.parseInt( request.getParameter("sex") );
 		//String agewhendeal = request.getParameter("agewhendeal");
 		String agewhenkill = request.getParameter("agewhenkill");
 		//String feedstatus = request.getParameter("feedstatus");
