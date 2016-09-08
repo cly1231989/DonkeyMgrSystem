@@ -14,6 +14,14 @@
 		<script src="assets/js/jquery-2.0.3.min.js"></script>
 		<script src="assets/js/jquery.mobile.custom.min.js"></script>
 		<script src="assets/js/jquery.cookie.js"></script>
+		
+		<style type="text/css">	
+			body{margin:0;padding:0;
+				background-image:url(assets/avatars/bk.jpg); 
+				background-repeat:no-repeat;
+				background-size:100% 100%;
+				}
+		</style>
 	</head>
 
 	<body class="login-layout">
